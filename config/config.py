@@ -1,6 +1,5 @@
 # Physics
 GRAVITY = 9.81
-OPTIMAL_RELEASE_ANGLE = 49.5  # degrees
 
 # Ball detection
 BALL_HSV_LOWER = (5, 120, 120)
