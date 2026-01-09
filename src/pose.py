@@ -1,4 +1,5 @@
 from ultralytics import YOLO
+import numpy as np
 
 model = YOLO("yolov8n-pose.pt")
 
@@ -13,9 +14,17 @@ KEYPOINTS = {
 
 def extract_pose(frame):
     result = model(frame, verbose=False)[0]
+
+    # Case 1: absolutely no detections
     if result.keypoints is None:
         return None
 
+    # Case 2: keypoints object exists but contains zero people
+    if result.keypoints.xy is None or len(result.keypoints.xy) == 0:
+        return None
+
+    # Safe: at least one detected person
     kp = result.keypoints.xy[0].cpu().numpy()
+
     joints = {name: kp[idx] for name, idx in KEYPOINTS.items()}
     return joints
