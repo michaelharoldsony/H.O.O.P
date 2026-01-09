@@ -1,10 +1,10 @@
 import cv2
-from pose import extract_pose
-from ball import detect_ball
-from trajectory import fit_trajectory, release_angle
-from biomechanics import elbow_angle
-from analysis import analyze_shot
-from utils import draw_points
+from src.pose import extract_pose
+from src.ball import detect_ball
+from src.trajectory import fit_trajectory, release_angle
+from src.biomechanics import elbow_angle
+from src.analysis import analyze_shot
+from src.utils import draw_points
 from config.config import MIN_BALL_POINTS
 
 VIDEO = "data/basketball_shot.mp4"
