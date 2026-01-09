@@ -4,15 +4,15 @@ import numpy as np
 
 from src.pose import extract_pose
 from src.ball import detect_ball, set_ball_hsv
-from src.trajectory import fit_trajectory, release_angle
 from src.biomechanics import elbow_angle
 from src.analysis import analyze_shot
 from src.utils import draw_points
 from config.config import MIN_BALL_POINTS
+from src.trajectory import fit_trajectory, release_angle_from_points
 
 # ================= PATH SETUP =================
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-VIDEO = os.path.join(BASE_DIR, "data", "basketball_shot.mp4")
+VIDEO = os.path.join(BASE_DIR, "data", "second vid.mp4")
 
 # ================= VIDEO LOAD =================
 cap = cv2.VideoCapture(VIDEO)
@@ -185,7 +185,18 @@ if len(ball_points) < MIN_BALL_POINTS:
 
 # --- Trajectory ---
 a, b, c = fit_trajectory(ball_points)
-shot_angle = release_angle(a, b)
+shot_angle = release_angle_from_points(ball_points[:10], k=5)
+# -------- ANGLE NORMALIZATION --------
+# Convert angle to [0, 180)
+shot_angle = (shot_angle + 360) % 360
+
+# Mirror angles > 180
+if shot_angle > 180:
+    shot_angle = 360 - shot_angle
+
+# Final physical constraint: only upward shots
+if shot_angle > 90:
+    shot_angle = 180 - shot_angle
 avg_elbow = sum(elbow_angles) / len(elbow_angles)
 
 # --- Hoop intersection ---

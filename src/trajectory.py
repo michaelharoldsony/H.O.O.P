@@ -10,5 +10,14 @@ def fit_trajectory(points):
     params, _ = curve_fit(parabola, xs, ys)
     return params  # a, b, c
 
-def release_angle(a, b):
-    return np.degrees(np.arctan(b))
+def release_angle_from_points(ball_points, k=5):
+    if len(ball_points) < k:
+        return None
+
+    p1 = np.array(ball_points[0])
+    p2 = np.array(ball_points[k])
+
+    dx = p2[0] - p1[0]
+    dy = p1[1] - p2[1]  # invert y-axis
+
+    return np.degrees(np.arctan2(dy, dx))
