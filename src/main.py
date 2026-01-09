@@ -3,6 +3,7 @@ import os
 import numpy as np
 import torch
 import joblib
+import sys
 
 from src.pose import extract_pose
 from src.ball import detect_ball, set_ball_hsv
@@ -13,7 +14,13 @@ from config.config import MIN_BALL_POINTS
 
 # ================= PATH SETUP =================
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-VIDEO = os.path.join(BASE_DIR, "data", "ballmiss.mp4")
+
+# ================= VIDEO PATH =================
+if len(sys.argv) > 1:
+    VIDEO = sys.argv[1]
+else:
+    VIDEO = os.path.join(BASE_DIR, "data", "second vid.mp4")
+
 
 MODEL_PATH = os.path.join(BASE_DIR, "training", "shot_model.pt")
 SCALER_PATH = os.path.join(BASE_DIR, "training", "scaler.pkl")

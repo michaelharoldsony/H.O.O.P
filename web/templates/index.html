@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AI Training Coach</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+
+<header>
+    <h1>AI Training Coach</h1>
+</header>
+
+<nav>
+    <div class="menu">
+        <div class="dropdown">
+            <button class="dropbtn">🏀 Basketball</button>
+            <div class="dropdown-content">
+                <a href="/run/basketball_1.mp4">Basketball Shot 1</a>
+                <a href="/run/basketball_2.mp4">Basketball Shot 2</a>
+            </div>
+        </div>
+
+        <button class="disabled">⚽ Football</button>
+    </div>
+</nav>
+
+{% if launched %}
+<div class="status">
+    Launching analysis for <b>{{ launched }}</b>...
+</div>
+{% endif %}
+
+<footer>
+    <p>Click a video to launch AI-based sports analysis</p>
+</footer>
+
+</body>
+</html>

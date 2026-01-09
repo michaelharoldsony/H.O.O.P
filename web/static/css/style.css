@@ -1,0 +1,81 @@
+body {
+    margin: 0;
+    font-family: "Segoe UI", Arial, sans-serif;
+    background: #0d0d0d;
+    color: white;
+    text-align: center;
+}
+
+header {
+    padding: 40px;
+    background: linear-gradient(90deg, #111, #1f1f1f);
+}
+
+h1 {
+    font-size: 48px;
+    margin: 0;
+}
+
+nav {
+    margin-top: 80px;
+}
+
+.menu {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+}
+
+.dropbtn, .disabled {
+    background: #ff9800;
+    border: none;
+    padding: 20px 40px;
+    font-size: 22px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.disabled {
+    background: #555;
+    cursor: not-allowed;
+}
+
+.dropdown {
+    position: relative;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background: #222;
+    min-width: 260px;
+    border-radius: 8px;
+    margin-top: 10px;
+}
+
+.dropdown-content a {
+    color: white;
+    padding: 14px;
+    display: block;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+.dropdown-content a:hover {
+    background: #333;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.status {
+    margin-top: 40px;
+    font-size: 20px;
+    color: #90ee90;
+}
+
+footer {
+    margin-top: 120px;
+    color: #aaa;
+}
